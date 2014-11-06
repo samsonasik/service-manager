@@ -1,0 +1,7 @@
+._*
+.buildpath
+.DS_Store
+phpunit.xml
+tmp/
+vendor/
+composer.phar
