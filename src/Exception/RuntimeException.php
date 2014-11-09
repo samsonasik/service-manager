@@ -16,19 +16,10 @@
  * and is licensed under the MIT license.
  */
 
-namespace Exp\ServiceManager;
+namespace ServiceManager\Exception;
 
-/**
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @licence MIT
- */
-interface FactoryInterface
+use RuntimeException as BaseRuntimeException;
+
+class RuntimeException extends BaseRuntimeException implements ExceptionInterface
 {
-    /**
-     * Create a service
-     *
-     * @param  ServiceManagerInterface $serviceManager
-     * @return object
-     */
-    public function createService(ServiceManagerInterface $serviceManager);
 }

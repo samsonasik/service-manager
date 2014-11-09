@@ -16,19 +16,27 @@
  * and is licensed under the MIT license.
  */
 
-namespace Exp\ServiceManager;
+namespace ServiceManager\Compiler;
 
 /**
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @licence MIT
+ * Interface for a compiler
  */
-interface ServiceManagerInterface
+interface CompilerInterface
 {
     /**
-     * Resolve an object by its class name
+     * Compile an array of paths
      *
-     * @param  string $className
-     * @return object
+     * This will recursively traverses all sub-folders and generate an optimized file
+     *
+     * @param  array $basePaths
+     * @return void
      */
-    public function get($className);
+    public function compile(array $basePaths);
+
+    /**
+     * Export the compiled optimized file
+     *
+     * @return void
+     */
+    public function export();
 }
