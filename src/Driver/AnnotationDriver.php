@@ -43,6 +43,16 @@ class AnnotationDriver implements FactoryFinderInterface
     private $cacheFactories = [];
 
     /**
+     * @var InvokableFactory
+     */
+    private $invokableFactory;
+
+    /**
+     * @var ReflectionFactory
+     */
+    private $reflectionFactory;
+
+    /**
      * @param Reader $annotationReader
      */
     public function __construct(Reader $annotationReader)
@@ -75,9 +85,15 @@ class AnnotationDriver implements FactoryFinderInterface
         $factory = null;
 
         if ($reflectionConstructor->getNumberOfRequiredParameters() === 0) {
-            $factory = new InvokableFactory();
+            if (!$this->invokableFactory) {
+                $this->invokableFactory = new InvokableFactory();
+            }
+            $factory = $this->invokableFactory;
         } else {
-            $factory = new ReflectionFactory();
+            if (!$this->reflectionFactory) {
+                $this->reflectionFactory = new ReflectionFactory();
+            }
+            $factory = $this->reflectionFactory;
         }
 
         return $this->cacheFactories[$className] = $factory;
